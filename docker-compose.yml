@@ -1,0 +1,24 @@
+services:
+  config-server:
+    container_name: config-server
+    image: georgegxx/config-server:latest
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+    networks:
+      - springcloud
+    environment:
+      ZIPKIN_SERVER_URL: ec2-54-84-87-60.compute-1.amazonaws.com:9411
+
+  servicio-eureka-server:
+    container_name: servicio-eureka-server
+    image: georgegxx/servicio-eureka-server:latest
+    ports:
+      - "8761:8761"
+    restart: unless-stopped
+    networks:
+      - springcloud
+
+networks:
+  springcloud:
+
